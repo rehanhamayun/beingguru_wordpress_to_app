@@ -6,11 +6,12 @@ import 'package:get/state_manager.dart';
 class BeinGuruImagesController extends GetxController {
   BeingGuruImages beingGuruImages = BeingGuruImages();
   List images = [];
-  RxBool loading = false.obs;
 
   BeinGuruImagesController() {
     loadImagesfromRepo();
   }
+
+  RxBool loading = false.obs;
 
   loadImagesfromRepo() async {
     loading(false);

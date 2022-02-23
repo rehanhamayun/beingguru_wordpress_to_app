@@ -1,5 +1,5 @@
 import 'package:beingguru/controller/beingguru_controller.dart';
-import 'package:beingguru/controller/beingguru_images_controller.dart';
+//import 'package:beingguru/controller/beingguru_images_controller.dart';
 import 'package:beingguru/model/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
@@ -10,14 +10,13 @@ import 'package:sizer/sizer.dart';
 class Homepage extends StatelessWidget {
   // Dependency Injection
   BeingGuruController beingGuruController = Get.put(BeingGuruController());
-  BeinGuruImagesController beinGuruImagesController =
-      Get.put(BeinGuruImagesController());
+
   Homepage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //print(beingGuruController.blogs.toString());
-    print(beinGuruImagesController.images.toString());
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -36,7 +35,7 @@ class Homepage extends StatelessWidget {
 
               return Container(
                 width: 90.w,
-                height: 40.h,
+                height: 42.h,
                 child: Card(
                   elevation: 0.0,
                   child: Column(
@@ -51,7 +50,7 @@ class Homepage extends StatelessWidget {
                               .replaceAll("Here&#8217;s", ""),
                           style: GoogleFonts.lato(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -61,8 +60,15 @@ class Homepage extends StatelessWidget {
                       ),
                       //PUBLISH DATE
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Text(
+                            " Author:  ${beingGuruController.blogs[index]['_embedded']['author'][0]['name'].toString()}",
+                            style: GoogleFonts.lato(
+                              color: Colors.grey.withOpacity(0.6),
+                              fontSize: 11,
+                            ),
+                          ),
                           Text(
                             beingGuruController.blogs[index]['date']
                                 .toString()
@@ -78,17 +84,43 @@ class Homepage extends StatelessWidget {
                         height: 1.h,
                       ),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
                         child: Image.network(
-                          blogIMG,
+                          beingGuruController.blogs[index]['_embedded']
+                              ['wp:featuredmedia'][0]['source_url'],
                           height: 20.h,
                           fit: BoxFit.cover,
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Read full blog"),
-                      )
+                      SizedBox(
+                        height: 0.5.h,
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // Status
+                          Text(
+                            "Status: ${beingGuruController.blogs[index]['status'].toString()}  ",
+                            style: GoogleFonts.lato(
+                              color: Colors.grey.withOpacity(0.6),
+                              fontSize: 11,
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.deepPurple, elevation: 0.0),
+                            onPressed: () {},
+                            child: Text(
+                              "Read full blog",
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

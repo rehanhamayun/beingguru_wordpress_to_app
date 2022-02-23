@@ -7,7 +7,7 @@ class BeingGuruImages {
 
   fetchImages() async {
     var imgresponse = await http.get(Uri.parse(urlimgaes));
-    var finalImages = await json.decode(imgresponse.body);
+    Map<String, dynamic> finalImages = await json.decode(imgresponse.body);
     return finalImages;
   }
 }
