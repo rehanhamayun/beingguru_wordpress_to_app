@@ -1,11 +1,12 @@
 import 'package:beingguru/controller/beingguru_controller.dart';
-//import 'package:beingguru/controller/beingguru_images_controller.dart';
-import 'package:beingguru/model/widgets.dart';
+import 'package:beingguru/view/blog_details.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:get/instance_manager.dart';
+
 import 'package:sizer/sizer.dart';
+import 'package:get/get.dart';
 
 class Homepage extends StatelessWidget {
   // Dependency Injection
@@ -32,6 +33,8 @@ class Homepage extends StatelessWidget {
             itemCount: beingGuruController.blogs.length,
             itemBuilder: (context, index) {
               //DIRECT WITHOUT IF ELSE
+              // Data store in variable of per blog
+              var storeBlog = beingGuruController.blogs[index].toString();
 
               return Container(
                 width: 90.w,
@@ -110,7 +113,9 @@ class Homepage extends StatelessWidget {
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.deepPurple, elevation: 0.0),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => BlogDetails());
+                            },
                             child: Text(
                               "Read full blog",
                               style: GoogleFonts.lato(

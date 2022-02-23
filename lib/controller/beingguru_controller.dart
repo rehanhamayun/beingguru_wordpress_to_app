@@ -6,15 +6,8 @@ class BeingGuruController extends GetxController {
   //Blogs Data
   BeingGuru beingGuru = BeingGuru();
 
-  //Images Data
-
-  //BeingGuruImages beingGuruImages = BeingGuruImages();
-
   // Empty list that holds all data after assigning / BLOGS DATA
   List blogs = [];
-
-  // EMPTY IMAGES LIST THAT HOLDS ALL DATA AFTER GETTING ASSIGNER / IMAGES DATA
-  // List images = [];
 
   // LOAD BLOGS FROM REPO
   BeingGuruController() {
@@ -26,16 +19,12 @@ class BeingGuruController extends GetxController {
 // Loading
   RxBool loading = false.obs;
 
+  // Load Blogs Data from Repository
+
   loadBlogsfromRepo() async {
     loading(false);
     final finalBlogs = await beingGuru.fetchBlogsData();
     loading(true);
-
-    // loadImagesfromRepo() async {
-    // loading(false);
-    //final finalImages = await beingGuruImages.fetchImages();
-    //loading(true);
-    //  }
 
     // assign all blogs posts to LIST i.e empty
     blogs.assignAll(finalBlogs);
