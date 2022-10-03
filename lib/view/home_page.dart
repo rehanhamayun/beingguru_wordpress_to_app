@@ -1,12 +1,9 @@
 import 'package:beingguru/controller/beingguru_controller.dart';
 import 'package:beingguru/view/blog_details.dart';
-
 import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-
-import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class Homepage extends StatelessWidget {
   // Dependency Injection
@@ -36,9 +33,9 @@ class Homepage extends StatelessWidget {
               // Data store in variable of per blog
               var storeBlog = beingGuruController.blogs[index].toString();
 
-              return Container(
+              return SizedBox(
                 width: 90.w,
-                height: 42.h,
+                height: 47.h,
                 child: Card(
                   elevation: 0.0,
                   child: Column(
